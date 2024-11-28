@@ -69,3 +69,74 @@ if __name__ == "__main__":
     num_records = 10000 if args.quick else 1000000
     populate_database(conn, num_records)
     conn.close()
+import sqlite3
+from faker import Faker
+import random
+
+fake = Faker()
+
+def create_database():
+    """Create the SQLite database and developers table"""
+    conn = sqlite3.connect('gigadev.db')
+    cursor = conn.cursor()
+    
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS developers (
+        id INTEGER PRIMARY KEY,
+        name TEXT NOT NULL,
+        hometown TEXT NOT NULL,
+        background TEXT NOT NULL,
+        strengths TEXT NOT NULL,
+        skills TEXT NOT NULL,
+        years_experience INTEGER NOT NULL
+    )
+    ''')
+    
+    conn.commit()
+    return conn
+
+def generate_developer():
+    """Generate random developer data"""
+    backgrounds = [
+        'Software Engineer', 'Data Scientist', 'DevOps Engineer',
+        'Full Stack Developer', 'Machine Learning Engineer',
+        'Systems Architect', 'Cloud Solutions Engineer'
+    ]
+    
+    strengths = [
+        'Problem Solving', 'Team Leadership', 'System Design',
+        'Code Optimization', 'Technical Architecture',
+        'Agile Methodologies', 'Innovation'
+    ]
+    
+    skills = [
+        'Python', 'JavaScript', 'Java', 'Go', 'Rust',
+        'AWS', 'Docker', 'Kubernetes', 'React', 'Node.js',
+        'PostgreSQL', 'MongoDB', 'Redis'
+    ]
+    
+    return {
+        'name': fake.name(),
+        'hometown': fake.city(),
+        'background': random.choice(backgrounds),
+        'strengths': ', '.join(random.sample(strengths, 2)),
+        'skills': ', '.join(random.sample(skills, 3)),
+        'years_experience': random.randint(1, 25)
+    }
+
+def populate_database(conn, num_records=1000000):
+    """Populate the database with generated developer data"""
+    cursor = conn.cursor()
+    
+    for _ in range(num_records):
+        dev = generate_developer()
+        cursor.execute('''
+        INSERT INTO developers 
+        (name, hometown, background, strengths, skills, years_experience)
+        VALUES (?, ?, ?, ?, ?, ?)
+        ''', (
+            dev['name'], dev['hometown'], dev['background'],
+            dev['strengths'], dev['skills'], dev['years_experience']
+        ))
+    
+    conn.commit()
