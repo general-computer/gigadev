@@ -7,4 +7,9 @@ setup(
     install_requires=[
         'faker',
     ],
+    extras_require={
+        'dev': [
+            'pytest>=8.3.3',
+        ],
+    },
 )
