@@ -47,10 +47,11 @@ class TestPromptGenerator(unittest.TestCase):
         """Clean up test artifacts"""
         self.conn.close()
         os.remove(self.test_db)
-        # Clean up any test prompts
-        for file in os.listdir('prompts'):
-            if file.startswith('test_prompt_'):
-                os.remove(os.path.join('prompts', file))
+        # Clean up any test prompts if the directory exists
+        if os.path.exists('prompts'):
+            for file in os.listdir('prompts'):
+                if file.startswith('test_prompt_'):
+                    os.remove(os.path.join('prompts', file))
     
     def test_get_first_developer(self):
         """

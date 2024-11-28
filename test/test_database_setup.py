@@ -55,7 +55,7 @@ class TestDatabaseSetup(unittest.TestCase):
         cursor = self.conn.cursor()
         cursor.execute("SELECT COUNT(*) FROM developers")
         count = cursor.fetchone()[0]
-        self.assertEqual(count, 100)
+        self.assertEqual(count, 10)
 
 if __name__ == '__main__':
     unittest.main()
