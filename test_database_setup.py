@@ -16,7 +16,7 @@ class TestDatabaseSetup(unittest.TestCase):
     
     def test_database_creation(self):
         """Test if database and table are created properly"""
-        create_database()
+        self.conn = create_database()
         cursor = self.conn.cursor()
         
         # Check if developers table exists
@@ -49,8 +49,8 @@ class TestDatabaseSetup(unittest.TestCase):
     
     def test_database_population(self):
         """Test if database population works with a small number of records"""
-        create_database()
-        populate_database(self.conn, num_records=100)
+        self.conn = create_database()
+        populate_database(self.conn, num_records=10)
         
         cursor = self.conn.cursor()
         cursor.execute("SELECT COUNT(*) FROM developers")

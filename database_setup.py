@@ -1,5 +1,6 @@
 import sqlite3
 import random
+import argparse
 from faker import Faker
 
 def create_database():
@@ -59,6 +60,12 @@ def populate_database(conn, num_records=1000000):
     print(f"Completed inserting {num_records} records.")
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='Setup developer database')
+    parser.add_argument('--quick', action='store_true', 
+                       help='Quick mode: only generate 10,000 records')
+    args = parser.parse_args()
+
     conn = create_database()
-    populate_database(conn)
+    num_records = 10000 if args.quick else 1000000
+    populate_database(conn, num_records)
     conn.close()
