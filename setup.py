@@ -6,10 +6,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         'faker',
+        'pytest>=8.3.3',
     ],
-    extras_require={
-        'dev': [
-            'pytest>=8.3.3',
-        ],
-    },
+    python_requires='>=3.8',
 )
