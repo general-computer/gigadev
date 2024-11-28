@@ -1,0 +1,24 @@
+Gigadev design sketch
+
+“All about the experience of being an executive”
+
+
+
+
+Basic concept - SQLite backend - populate with the life stories, backgrounds, etc for a million developers
+
+A) “Personality generation engine” 
+
+B) Pitch process (take in idea, refine)
+It’s a multi-step process: You are asked for your idea on console. This idea is sent out to an agent to be refined. It’s pitched back to you 
+
+C) Development begins
+
+D) ???
+
+E) Profit!!!
+
+
+
+Possible design targets:
+gigadev itself, Aider, w
