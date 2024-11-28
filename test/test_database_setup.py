@@ -1,7 +1,7 @@
 import unittest
 import sqlite3
 import os
-from database_setup import create_database, generate_developer, populate_database
+from gigadev.database.setup import create_database, generate_developer, populate_database
 
 class TestDatabaseSetup(unittest.TestCase):
     def setUp(self):

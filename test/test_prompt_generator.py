@@ -1,7 +1,7 @@
 import unittest
 import os
 import sqlite3
-from prompt_generator import get_first_developer, generate_prompt, save_prompt
+from gigadev.prompts.generator import get_first_developer, generate_prompt, save_prompt
 from datetime import datetime
 
 class TestPromptGenerator(unittest.TestCase):
