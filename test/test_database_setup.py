@@ -16,7 +16,7 @@ class TestDatabaseSetup(unittest.TestCase):
     
     def test_database_creation(self):
         """Test if database and table are created properly"""
-        self.conn = create_database()
+        self.conn = create_database(self.test_db)
         cursor = self.conn.cursor()
         
         # Check if developers table exists

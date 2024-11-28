@@ -3,9 +3,9 @@ import random
 import argparse
 from faker import Faker
 
-def create_database():
+def create_database(db_path='gigadev.db'):
     """Create SQLite database and developer table"""
-    conn = sqlite3.connect('gigadev.db')
+    conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
     
     cursor.execute('''
