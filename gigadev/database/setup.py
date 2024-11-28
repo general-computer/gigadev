@@ -8,8 +8,11 @@ def create_database(db_path='gigadev.db'):
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
     
+    # Drop existing table if it exists
+    cursor.execute('DROP TABLE IF EXISTS developers')
+    
     cursor.execute('''
-    CREATE TABLE IF NOT EXISTS developers (
+    CREATE TABLE developers (
         id INTEGER PRIMARY KEY,
         name TEXT NOT NULL,
         hometown TEXT NOT NULL,

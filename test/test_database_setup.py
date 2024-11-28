@@ -49,7 +49,7 @@ class TestDatabaseSetup(unittest.TestCase):
     
     def test_database_population(self):
         """Test if database population works with a small number of records"""
-        self.conn = create_database()
+        self.conn = create_database(self.test_db)
         populate_database(self.conn, num_records=10)
         
         cursor = self.conn.cursor()
